@@ -43,7 +43,7 @@ namespace StarmapBetterZoom
                     Messaging.Notification($"Current zoom step is {-Global.zoom}");
                     break;
                 case "reset":
-                    Global.zoom = -10f;
+                    Global.zoom = -20f;
                     PLXMLOptionsIO.Instance.CurrentOptions.SetStringValue("StarmapBetterZoomSettings", $"{Global.zoom}");
                     Messaging.Notification("Zoom step level reset to default!");
                     break;

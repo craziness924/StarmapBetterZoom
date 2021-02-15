@@ -6,7 +6,7 @@ namespace StarmapBetterZoom
 {
     class Global
     {
-        public static float zoom = -10f;
+        public static float zoom = -20f;
     }
 }
 [HarmonyPatch(typeof(PLServer), "Start")]
