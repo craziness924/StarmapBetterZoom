@@ -14,7 +14,7 @@ namespace StarmapBetterZoom
             {
                 List<CodeInstruction> TargetSequence = new List<CodeInstruction>()
             {
-                new CodeInstruction(OpCodes.Ldc_R4, -10f),
+                new CodeInstruction(OpCodes.Ldc_R4, -60f),
                 new CodeInstruction(OpCodes.Mul),
             };
                 List<CodeInstruction> InjectedSequence = new List<CodeInstruction>()
