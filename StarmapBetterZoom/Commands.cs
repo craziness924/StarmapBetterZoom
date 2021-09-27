@@ -60,5 +60,10 @@ namespace StarmapBetterZoom
         {
             return new string[][] { new string[] { "zoom", "values", "reset" }, new string[] { "%zoom_multiplier" } };
         }
+
+        public override string[] UsageExamples()
+        {
+            return new string[] { $"/{CommandAliases()[0]} <zoom | values | reset> [zoom multiplier]" };
+        }
     }
 }
