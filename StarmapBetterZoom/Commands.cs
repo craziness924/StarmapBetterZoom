@@ -1,22 +1,21 @@
-﻿using PulsarPluginLoader.Chat.Commands;
-using PulsarPluginLoader.Utilities;
-using StarmapBetterZoom;
+﻿using PulsarModLoader.Chat.Commands.CommandRouter;
+using PulsarModLoader.Utilities;
 
 namespace StarmapBetterZoom
 {
-    class Commands : IChatCommand
+    class Commands : ChatCommand
     {
-        public string[] CommandAliases()
+        public override string[] CommandAliases()
         {
             return new string[] { "starmapzoom", "smz" };
         }
 
-        public string Description()
+        public override string Description()
         {
             return "controls the behavior of the StarmapBetterZoom plugin";
         }
 
-        public bool Execute(string arguments, int SenderID)
+        public override void Execute(string arguments)
         {
             string[] args = arguments.Split(' ');
             bool yes = false;
@@ -31,16 +30,16 @@ namespace StarmapBetterZoom
                 case "zoom":
                     if (yes)
                     {
-                        Global.zoom = -woah;
+                        Global.zoom = -woah*10;
                         Messaging.Notification($"Zoom precision level set to {woah}");
                     }
                     else
                     {
-                        Messaging.Notification($"Argument not found, current value is {-Global.zoom}");
+                        Messaging.Notification($"Argument not found, current value is {-Global.zoom/10}");
                     }
                     break;
                 case "values":
-                    Messaging.Notification($"Current zoom step is {-Global.zoom}");
+                    Messaging.Notification($"Current zoom step is {-Global.zoom/10}");
                     break;
                 case "reset":
                     Global.zoom = -10f;
@@ -54,18 +53,12 @@ namespace StarmapBetterZoom
             if (yes)
             {
                 PLXMLOptionsIO.Instance.CurrentOptions.SetStringValue("StarmapBetterZoomSettings", $"{Global.zoom}");
-            } 
-            return false;
+            }
         }
 
-        public bool PublicCommand()
+        public override string[][] Arguments()
         {
-            return false;
-        }
-
-        public string UsageExample()
-        {
-            return "/starmapzoom [zoom | values | reset]";
+            return new string[][] { new string[] { "zoom", "values", "reset" }, new string[] { "%zoom_multiplier" } };
         }
     }
 }
